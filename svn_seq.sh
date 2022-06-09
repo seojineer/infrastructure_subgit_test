@@ -43,7 +43,7 @@ function svn_sequential_commit_1user_same_file() {
 	for ((i=1;i<$SEQ_NUM+1;i++));
 	do
 		#sleep 5
-		echo [SVN commit test i]
+		echo "[SVN commit test $i]"
 		echo "--------------------------------------------------"
 		svn up
 		echo "add by svn - $i" >> trunk/git_svn_sequential/testfile
