@@ -1,0 +1,10 @@
+[includeIf "gitdir:/home/seojikim/work/ci_cd/git/test_repo_1/"]
+	path = ~/.gitconfig-fadu1
+[includeIf "gitdir:/home/seojikim/work/ci_cd/git/test_repo_2/"]
+	path = ~/.gitconfig-fadu2
+[includeIf "gitdir:/home/seojikim/work/ci_cd/git/test_repo_3/"]
+	path = ~/.gitconfig-fadu3
+[includeIf "gitdir:/home/seojikim/work/ci_cd/git/test_repo_4/"]
+	path = ~/.gitconfig-fadu4
+[includeIf "gitdir:/home/seojikim/work/ci_cd/git/test_repo_5/"]
+	path = ~/.gitconfig-fadu5

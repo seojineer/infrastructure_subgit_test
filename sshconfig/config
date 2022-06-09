@@ -1,0 +1,34 @@
+Host gitlab-fadu6
+   HostName 10.17.24.122
+   Port 10022
+   User git
+   IdentityFile ~/.ssh/id_rsa_fadu6
+   IdentitiesOnly yes
+
+Host gitlab-fadu7
+   HostName 10.17.24.122
+   Port 10022
+   User git
+   IdentityFile ~/.ssh/id_rsa_fadu7
+   IdentitiesOnly yes
+
+Host gitlab-fadu8
+   HostName 10.17.24.122
+   Port 10022
+   User git
+   IdentityFile ~/.ssh/id_rsa_fadu8
+   IdentitiesOnly yes
+
+Host gitlab-fadu9
+   HostName 10.17.24.122
+   Port 10022
+   User git
+   IdentityFile ~/.ssh/id_rsa_fadu9
+   IdentitiesOnly yes
+
+Host gitlab-fadu10
+   HostName 10.17.24.122
+   Port 10022
+   User git
+   IdentityFile ~/.ssh/id_rsa_fadu10
+   IdentitiesOnly yes

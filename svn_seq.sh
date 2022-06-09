@@ -8,16 +8,16 @@ PWD=`pwd`
 #SEQ_NUM=50
 
 function svn_sequential_commit_1user_diff_file() {
-	cd $SVN_REPO_DIR
 	echo "[SVN] sequential commit test - 1 user"
 	echo "--------------------------------------------------"
+	cd $SVN_REPO_DIR
 	svn up
 	
-	if [ ! -d trunk/svn_sequential3 ]; then
+	if [ ! -d trunk/svn_sequential ]; then
 		echo "mkdir svn_sequential"
 		svn up
-		mkdir -p trunk/svn_sequential3
-		svn add trunk/svn_sequential3
+		mkdir -p trunk/svn_sequential
+		svn add trunk/svn_sequential
 		svn commit --username $SVN_USER --password $SVN_PW -m "[svn] add svn_sequential"
 	fi
 
@@ -27,18 +27,28 @@ function svn_sequential_commit_1user_diff_file() {
 		echo "[SVN] sequential commit test $i - 1 user - diff file"
 		echo "--------------------------------------------------"
 		svn up
-		touch trunk/svn_sequential3/testfile$i
-		svn add trunk/svn_sequential3/testfile$i
-		svn commit --username $SVN_USER --password $SVN_PW -m "[svn] sequential commit test $i"
+		touch trunk/svn_sequential/testfile$i
+		svn add trunk/svn_sequential/testfile$i
+		svn commit --username $SVN_USER --password $SVN_PW -m "[svn] sequential commit test $i - 1 user - diff file"
 	done
 	
 	cd $PWD
 }
 
 function svn_sequential_commit_1user_same_file() {
-	cd $SVN_REPO_DIR
 	echo "[SVN] sequential commit test - 1 user - same file"
 	echo "--------------------------------------------------"
+
+	cd $SVN_REPO_DIR
+	svn up
+
+	if [ ! -d trunk/svn_sequential ]; then
+		echo "mkdir svn_sequential"
+		svn up
+		mkdir -p trunk/git_svn_sequential
+		svn add trunk/git_svn_sequential
+		svn commit --username $SVN_USER --password $SVN_PW -m "[svn] add git_svn_sequential"
+	fi
 
 	for ((i=1;i<$SEQ_NUM+1;i++));
 	do
@@ -56,14 +66,14 @@ function svn_sequential_commit_1user_same_file() {
 }
 
 function usage() {
-	echo "Usage: $0 -a {GIT_REPO_DIR} -c {CNT} -u {SVN_USER} -p {SVN_PW}"
+	echo "Usage: $0 -a {GIT_REPO_DIR} -c {CNT} -u {SVN_USER} -p {SVN_PW} -f {SAME_FILE: true/false}"
 }
 
-if [ $# -lt 2 ]; then
+if [ $# -lt 4 ]; then
 	usage
 	exit 1
 fi
-while getopts ":a:u:p:c:" opt; do
+while getopts ":a:u:p:c:f:" opt; do
 	case $opt in
 		a) SVN_REPO_DIR="$OPTARG"
 		;;
@@ -73,15 +83,16 @@ while getopts ":a:u:p:c:" opt; do
 		;;
 		c) SEQ_NUM="$OPTARG"
 		;;
+		f) SAME_FILE="$OPTARG"
+		;;
 		*) usage
 		exit 1
 		;;
 	esac
 done
-echo $SVN_REPO_DIR
-echo $SVN_USER
-echo $SVN_PW
-echo $SEQ_NUM
 
-#svn_sequential_commit_1user_diff_file
-svn_sequential_commit_1user_same_file
+if [ "$SAME_FILE" == "true" ] || [ "$SAME_FILE" == "True" ]; then
+	svn_sequential_commit_1user_same_file
+else
+	svn_sequential_commit_1user_diff_file
+fi

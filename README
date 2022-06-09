@@ -1,0 +1,32 @@
+This is for svn and git commit test with multiple user account.
+
+1) Precondition
+To pull and push with multiple git user, you should change git config and ssh config
+- git config
+Refer gitconfig directory.
+- ssh config
+Refer sshconfig directory.
+
+2) Download source
+(svn)
+$ svn co svn://{SVN_URL}/{TEST_REPO} {SVN_REPO_DIR_PATH} {SVN_REPO_NAME}_1 to 5.
+(git)
+$ git clone git@gitlab-fadu6:seojikim/svn_repo.git {SVN_REPO_NAME}_1 to 5.
+
+2) Run script
+- git_multi_user.sh 
+It modify same file and commit on 5 diffrent local git repository directory
+with different account.
+
+Usage: $0 {SVN_REPO_DIR_PATH} {SVN_REPO_NAME}
+ex)
+./git_multi_user.sh /home/seojikim/work/ci_cd/git test_repo
+
+- svn_multi_user.sh
+It modify same file and commit on 5 diffrent local svn repository directory.
+with different account.
+
+Usage: Usage: ./svn_multi_user.sh {SVN_REPO_DIR} {SVN_REPO_NAME}
+ex)
+./svn_multi_user.sh /user/seojikim/work/svn test_repo
+
