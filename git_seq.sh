@@ -33,9 +33,11 @@ function git_sequential_commit_1user_diff_file() {
 }
 
 function git_sequential_commit_1user_same_file() {
-	cd $GIT_REPO_DIR
 	echo "[GIT] sequential commit test - 1 user - same file"
 	echo "--------------------------------------------------"
+
+	cd $GIT_REPO_DIR
+	echo "cd $GIT_REPO_DIR"
 	
 	for ((i=1;i<$SEQ_NUM+1;i++));
 	do
